@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 
-use diagnostics;
-
+use warnings;
 use Module::Load;
 
 use Data::Dumper;
@@ -15,17 +14,24 @@ if (!(-d $confdir))
     mkdir($confdir);
 }
 
+if (!(-d $confdir . "/modules"))
+{
+    mkdir($confdir . "/modules");
+}
+
+
 if (@ARGV)
 {
 
-    unshift(@INC, ".");
+    unshift(@INC, $confdir . "/modules/");
     my %mappings = ();
 
-    my @modules = split(" ", read_file("walter.mods"));
+    my @modules = split(" ", read_file($confdir . "/walter.mods"));
 
     
     foreach my $mod (@modules)
     {
+        no warnings "redefine";
         autoload $mod;
         init(\%mappings);
     }
