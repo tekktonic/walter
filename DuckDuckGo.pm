@@ -1,7 +1,5 @@
 package DuckDuckGo;
-use v5.20;
 use strict;
-no warnings "redefine";
 use Exporter;
 
 our $VERSION = 0.01;
@@ -11,13 +9,18 @@ our @EXPORT = qw(init);
 
 our $dictionary;
 
-sub search (@) {
+sub search {
     my $query = "https://duckduckgo.com/?q=" . join("+", @_);
     my $browse = $dictionary->{"browse"};
+    if (!$browse)
+    {
+        die("Browser not set, unable to perform a web search");
+    }
+    
     &$browse($query);
 }
 
-sub init ($) {
+sub init {
     $dictionary = shift;
     $dictionary->{"search"} = \&DuckDuckGo::search;
 }

@@ -1,7 +1,5 @@
 package Firefox;
-use v5.20;
 use strict;
-no warnings "redefine";
 use Exporter;
 our $VERSION = 0.01;
 our @ISA = qw(Exporter);

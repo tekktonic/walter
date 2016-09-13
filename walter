@@ -1,6 +1,5 @@
 #!/usr/bin/env perl
 
-use v5.20;
 use diagnostics;
 
 use Module::Load;
@@ -9,25 +8,29 @@ use Data::Dumper;
 
 use File::Slurp qw(read_file);
 
+my $confdir = $ENV{"HOME"} . "/.walter/";
+
+if (!(-d $confdir))
+{
+    mkdir($confdir);
+}
+
 if (@ARGV)
 {
 
     unshift(@INC, ".");
     my %mappings = ();
 
-    my @modules = split(" ", read_file("jarvis.mods"));
+    my @modules = split(" ", read_file("walter.mods"));
 
-    say @modules;
     
     foreach my $mod (@modules)
     {
-        say $mod;
         autoload $mod;
         init(\%mappings);
     }
     
     my $verb = shift(@ARGV);
-    say("Mappings");
     my $handler = $mappings{$verb};
     &$handler(@ARGV);
 }
