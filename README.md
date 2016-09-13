@@ -1,0 +1,1 @@
+Walter is a quick little pluggable user agent for fun. It works by defining a set of verbs, which correspond to handlers defined in modules. Based on the verb, Walter calls the handler with the remainder of argv as the arguments to the verb.
