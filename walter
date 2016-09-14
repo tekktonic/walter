@@ -53,5 +53,11 @@ if (@ARGV)
     my $verb = shift(@ARGV);
 
     my $handler = $mappings{$verb};
-    &$handler(@ARGV);
+    if (defined($handler)) {
+        &$handler(@ARGV);
+    }
+    else
+    {
+        exec ($verb, @ARGV);
+    }
 }
