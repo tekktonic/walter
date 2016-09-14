@@ -5,7 +5,10 @@ use Exporter;
 our $VERSION = 0.01;
 our @ISA = qw(Exporter);
 our @keywords = qw(search);
-our @EXPORT = qw(init);
+
+our @EXPORT = qw(init needs);
+
+
 
 our $dictionary;
 
@@ -25,4 +28,7 @@ sub init {
     $dictionary->{"search"} = \&DuckDuckGo::search;
 }
 
+sub needs {
+    return qw();
+}
 1;

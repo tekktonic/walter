@@ -4,12 +4,12 @@ use Exporter;
 our $VERSION = 0.01;
 our @ISA = qw(Exporter);
 our @keywords = qw(browse);
-our @EXPORT = qw(init);
+our @EXPORT = qw(init needs);
 
 sub browse {
     my @args = @_;
 
-    exec("/usr/local/bin/firefox", @args);
+    exec("firefox", @args);
 }
 
 sub init {
@@ -17,4 +17,7 @@ sub init {
     $hashref->{"browse"} = \&Firefox::browse;
 }
 
+sub needs {
+    return qw();
+}
 1;

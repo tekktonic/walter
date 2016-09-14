@@ -1,11 +1,12 @@
 #!/usr/bin/env perl
 
 use warnings;
+use v5.10;
+
+use CPAN;
+use File::Slurp qw(read_file);
 use Module::Load;
 
-use Data::Dumper;
-
-use File::Slurp qw(read_file);
 
 my $confdir = $ENV{"HOME"} . "/.walter/";
 
@@ -31,12 +32,29 @@ if (@ARGV)
     
     foreach my $mod (@modules)
     {
+        use Data::Dumper;
+        use Module::Installed::Tiny qw(module_installed);
+
         no warnings "redefine";
         autoload $mod;
+        my @needs = needs();
+        my @realneeds = grep { !module_installed($_) } @needs;
+
+        say $mod;
+        say "needs: " . @needs;
+        if (@realneeds) {
+            say "Module $mod requires the following modules: " . join(", ", @realneeds) . "\nHit enter to confirm installation, or ^C out and remove these modules from your config.";
+            
+            <STDIN>;
+            foreach my $dep (@realneeds)
+            {
+                CPAN::Shell->install($dep) || die "Unable to install $dep";
+            }
+        }
         init(\%mappings);
     }
     
-    my $verb = shift(@ARGV);
-    my $handler = $mappings{$verb};
-    &$handler(@ARGV);
+#    my $verb = shift(@ARGV);
+#    my $handler = $mappings{$verb};
+#    &$handler(@ARGV);
 }
