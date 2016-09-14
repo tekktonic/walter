@@ -54,4 +54,4 @@ These handlers are made known to Walter via the `init` subroutine, which must be
 ***NOTE***: The interface of this function will be changing at some point. See the walter.mods section.
 
 ## The Needs Subroutine
-The second required function to be exported is `needs`: this is what drives the dependency management. When a module is loaded by Walter, it calls the module's `needs`, which returns a list of the modules required by the module. These modules are then installed automatically if allowed by the user.
+The second required function to be exported is `needs`: this is what drives the dependency management. When a module is loaded by Walter, it calls the module's `needs`, which returns a list of the modules required by the module. These modules are then installed automatically if allowed by the user. Any given `needs` should only be one line: `return qw();`, with the modules being depended on put into the qw.
