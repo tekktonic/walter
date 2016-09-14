@@ -41,7 +41,7 @@ sub init {
 }
 
 sub needs {
-    return qw(File::Copy::Recursive Acme::Oil);
+    return qw(File::Copy::Recursive);
 }
 
 1;
