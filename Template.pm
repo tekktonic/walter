@@ -3,6 +3,7 @@ package Template;
 use strict;
 use Exporter;
 
+use Module::Load;
 
 use v5.10;
 
@@ -14,7 +15,8 @@ our @EXPORT = qw(init needs);
 our $home = $ENV{"HOME"} . "/.walter/Template/";
 
 sub template {
-    use File::Copy::Recursive qw(rcopy);
+
+    autoload "File::Copy::Recursive","rcopy";
     my @args = @_;
     
     my @templates = ();

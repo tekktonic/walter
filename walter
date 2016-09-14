@@ -40,8 +40,6 @@ if (@ARGV)
         my @needs = needs();
         my @realneeds = grep { !module_installed($_) } @needs;
 
-        say $mod;
-        say "needs: " . @needs;
         if (@realneeds) {
             say "Module $mod requires the following modules: " . join(", ", @realneeds) . "\nHit enter to confirm installation, or ^C out and remove these modules from your config.";
             
@@ -54,7 +52,7 @@ if (@ARGV)
         init(\%mappings);
     }
     
-#    my $verb = shift(@ARGV);
-#    my $handler = $mappings{$verb};
-#    &$handler(@ARGV);
+    my $verb = shift(@ARGV);
+    my $handler = $mappings{$verb};
+    &$handler(@ARGV);
 }
