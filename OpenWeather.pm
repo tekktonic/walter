@@ -26,7 +26,7 @@ sub weather {
     my $location = shift;
     my $current_weather = JSON::from_json(LWP::Simple::get("http://api.openweathermap.org/data/2.5/weather?q=$location&APIKEY=$apikey"));
 
-    print("Weather in " . $current_weather->{"name"} . ": " . ((($current_weather->{"weather"})->[0])->{"main"}) . " at " . (fahrenheit_of_kelvin(($current_weather->{"main"})->{"temp"})) . "\n");
+    print("Weather in " . $current_weather->{"name"} . " (provided by OpenWeather): " . ((($current_weather->{"weather"})->[0])->{"main"}) . " at " . (fahrenheit_of_kelvin(($current_weather->{"main"})->{"temp"})) . "\n");
 }
 
 sub forecast {
