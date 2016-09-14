@@ -44,13 +44,14 @@ if (@ARGV)
             <STDIN>;
             foreach my $dep (@realneeds)
             {
-                CPAN::Shell->install($dep) || die "Unable to install $dep";
+                CPAN::Shell->install($dep);
             }
         }
         init(\%mappings);
     }
     
     my $verb = shift(@ARGV);
+
     my $handler = $mappings{$verb};
     &$handler(@ARGV);
 }
