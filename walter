@@ -26,13 +26,11 @@ if (@ARGV)
 
     unshift(@INC, $confdir . "/modules/");
     my %mappings = ();
-
     my @modules = split(" ", read_file($confdir . "/walter.mods"));
 
     
     foreach my $mod (@modules)
     {
-        use Data::Dumper;
         use Module::Installed::Tiny qw(module_installed);
 
         no warnings "redefine";
