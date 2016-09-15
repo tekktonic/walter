@@ -32,6 +32,14 @@ Most complicated of the bunch. Given a list of templates, copy the contents of t
 Fetch current weather and temperature via OpenWeather.
 `walter weather [location]`
 
+## Perl
+Look up something via perldoc
+`walter perl [thing]`
+
+## OxfordDictionary
+Pull the definition of a word from the Oxford English Dictionary
+`walter define [word]`
+
 # The walter.mod Format
 As it stands now, the format is incredibly simple: it is a single line with all the modules to be used separated by spaces.
 
