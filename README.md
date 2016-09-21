@@ -37,8 +37,16 @@ Look up something via perldoc
 `walter perl [thing]`
 
 ## OxfordDictionary
-Pull the definition of a word from the Oxford English Dictionary
+Pull the definition of a word from the Oxford English Dictionary.
 `walter define [word]`
+
+## Python2
+Look up the Python 2 documentation on the web.
+`walter py2 [query]`
+
+## Python3
+Look up the Python 3 documentation on the web.
+`walter py3 [query]`
 
 # The walter.mod Format
 As it stands now, the format is incredibly simple: it is a single line with all the modules to be used separated by spaces.
